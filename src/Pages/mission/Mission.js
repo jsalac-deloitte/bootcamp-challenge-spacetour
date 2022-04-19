@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
+import format from "date-fns/format";
+import Swal from "sweetalert2";
 
 import API from "../../api/axios";
 
@@ -16,9 +18,11 @@ export default function Mission() {
   const [maxYear, setMaxYear] = useState(null);
   const [years, setYears] = useState([]);
 
-  const findMission = useRef(null);
-  const topPart = useRef(null);
+  const findMission = useRef();
+  const topPart = useRef();
+  const missionRef = useRef();
 
+  //get the launches from api
   const fetchLaunches = async () => {
     try {
       const response = await API.get("/launches");
@@ -31,6 +35,7 @@ export default function Mission() {
     }
   };
 
+  //get the launch pads from api
   const fetchLaunchpads = async () => {
     try {
       const response = await API.get("/launchpads");
@@ -46,6 +51,11 @@ export default function Mission() {
     }
   };
 
+  useEffect(() => {
+    fetchLaunches();
+    fetchLaunchpads();
+  }, []);
+
   const getYears = async (option) => {
     return option.reduce(
       (list, item, index) => {
@@ -59,6 +69,7 @@ export default function Mission() {
     );
   };
 
+  //set default image on mission path if broken
   const defaultImgSrc = (img) => {
     img.target.src = "/noImage.jpeg";
   };
@@ -71,21 +82,28 @@ export default function Mission() {
     setMaxYear(selectOptionYear);
   }, [years]);
 
-  useEffect(() => {
-    fetchLaunches();
-    fetchLaunchpads();
-  }, []);
-
+  //handle the form submission
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log("form submit");
-    console.log("selected launch pad", selectedLaunchPad);
-    console.log("selected MIn year", selectedMinYear);
-    console.log("selected Max year", selectedMaxYear);
-    console.log("selected keyword", keyword);
 
+    // validate date range filter
+    if (
+      selectedMinYear != null &&
+      selectedMaxYear != null &&
+      selectedMinYear > selectedMaxYear
+    ) {
+      Swal.fire({
+        title: "Error!",
+        text: "Invalid Date range",
+        icon: "error",
+      });
+      return;
+    }
+
+    //construct the filter query parameter
     let searchCriteria = "?q=" + (keyword || "");
 
+    //add the launch pad to query parameter
     if (
       selectedLaunchPad !== null &&
       selectedLaunchPad !== "" &&
@@ -94,6 +112,7 @@ export default function Mission() {
       searchCriteria += "&launch_site.site_id=" + selectedLaunchPad;
     }
 
+    //add the min year to query parameter
     if (
       selectedMinYear !== null &&
       selectedMinYear !== "" &&
@@ -102,6 +121,7 @@ export default function Mission() {
       searchCriteria += "&launch_date_local_lte=" + selectedMinYear;
     }
 
+    // add the max year to query parameter
     if (
       selectedMaxYear !== null &&
       selectedMaxYear !== "" &&
@@ -113,10 +133,9 @@ export default function Mission() {
     try {
       const response = await API.get("/launches" + searchCriteria);
       setLaunches(response.data);
-      console.log("Response data", response);
     } catch (err) {
       //not 200 response range
-      console.log(err);
+      console.log(err.response.data);
     }
   };
 
@@ -136,12 +155,42 @@ export default function Mission() {
     });
   };
 
+  const formatDateAndTime = (dateAndTime) => {
+    let newDate = format(new Date(dateAndTime), "do MMMM yyyy");
+    let newTime = format(new Date(dateAndTime), "h:m bb");
+    return `${newDate} at ${newTime}`;
+  };
+
+  const getButtonLinks = (buttonLinks) => {
+    let links = {
+      reddit_campaign: "Reddit Campaign",
+      reddit_launch: "Reddit Launch",
+      reddit_recovery: "Reddit Recovery",
+      reddit_media: "Reddit Media",
+      presskit: "Press",
+      article_link: "Article",
+      video_link: "Watch Videos",
+    };
+
+    let arrayLinks = [];
+    Object.keys(links).forEach((item) => {
+      if (buttonLinks.hasOwnProperty(item) && buttonLinks[item] !== null) {
+        arrayLinks.push({
+          label: links[item],
+          link: buttonLinks[item],
+        });
+      }
+    });
+
+    return arrayLinks;
+  };
+
   return (
-    <div className="h-screen w-full " ref={topPart}>
+    <div className="h-screen w-full ">
       {/* header */}
       <div className="h-full w-full bg-desktop-mission bg-center  ">
         {/* header container */}
-        <div className=" w-full h-full ">
+        <div className=" w-full h-full px-4">
           {/* nav */}
           <div className=" h-[25%] flex  justify-center items-center">
             <h2 className="text-white font-barlow-condensed font-bont text-2xl tracking-[4px]">
@@ -174,12 +223,12 @@ export default function Mission() {
         </div>
       </div>
       {/* content */}
-      <div className="w-full  h-full  px-4 pt-6 bg-gray-200" ref={findMission}>
+      <div className="w-full  h-full  px-4 pt-6 bg-gray-200 " ref={findMission}>
         {/* container */}
-        <div className=" w-full h-full  ">
+        <div className=" w-full h-full relative  overflow-y-scroll ">
           {/* filter */}
-          <form onSubmit={submitForm}>
-            <div className="bg-gray-100 flex flex-col px-2 py-2 space-y-4 tracking-widest text-gray-800">
+          <form onSubmit={submitForm} className=" bg-yellow-400 ">
+            <div className=" bg-gray-100 flex flex-col px-2  space-y-4 tracking-widest text-gray-800">
               <div className="flex flex-col">
                 <label htmlFor="keyword" className="px-4 ">
                   Keyword
@@ -236,59 +285,84 @@ export default function Mission() {
             </div>
           </form>
           {/* results */}
-          <div className="w-full h-1/2  overflow-y-scroll bg-gray-100 py-6 space-y-6">
+          <div className="w-full h-1/2  bg-gray-50 space-y-6 overflow-y-scroll mt-4 ">
             {/* showing  label result*/}
 
-            <div className="flex justify-center">
+            <div className="flex justify-center ">
               {launches.length > 0 && (
                 <p>showing {launches.length} missions </p>
               )}
               {launches.length <= 0 && <p>No missions found</p>}
             </div>
             {/* list of items */}
-            <div className="space-y-5 px-4">
+            <div className="h-full overflow-y-scroll  px-4  ">
               {/* item */}
               {launches.map((item, index) => (
                 <div
                   key={item.flight_number}
-                  className="flex shadow-lg shadow-gray-400 bg-white p-4"
+                  className="flex   bg-gray-50 px-8   "
+                  ref={index === 0 ? topPart : missionRef}
                 >
-                  <div className="flex flex-col text-center">
+                  <div className="w-full flex flex-col text-center space-y-4 border-b py-8">
                     {/* logo */}
-                    <div className="bg-green-400 flex justify-center">
+                    <div className=" flex justify-center">
                       {item.links.mission_patch && (
                         <img
                           onError={defaultImgSrc}
-                          src={item.links.mission_patch}
-                          alt={item.links.patch}
+                          src={item.links?.mission_patch}
+                          alt={item.links?.mission_patch}
                           className="w-20"
                         ></img>
                       )}
                     </div>
 
                     {/* content */}
-                    <div className="bg-yellow-400">
-                      {/* rocket name and payload id */}
-                      <h1>
-                        {item.rocket.rocket_name} {" - "}
-                        {item.payloads[0].payload_id}
-                      </h1>
-                      {/* details about the flight */}
-                      <p>
-                        Launched {item.launch_date_local}
-                        {" - "}
-                        {
-                          launchpads.filter(
-                            (pad) => item.launch_site.site_id === pad.id
-                          )[0].full_name
-                        }
-                      </p>
+
+                    <div className="space-y-4 ">
+                      <div>
+                        {/* rocket name and payload id */}
+                        <h1 className="font-barlow text-lg font-bold">
+                          {item?.rocket?.rocket_name} {" - "}
+                          {item?.payloads[0]?.payload_id}
+                          {(!item.launch_success || !item.land_success) && (
+                            <span className="text-red-500">
+                              {" "}
+                              - Failed mission
+                            </span>
+                          )}
+                        </h1>
+                        {/* details about the flight */}
+                        <p className="text-gray-500">
+                          Launched{" "}
+                          {formatDateAndTime(new Date(item.launch_date_local))}
+                          {" from "}
+                          {
+                            launchpads.filter(
+                              (pad) => item?.launch_site?.site_id === pad?.id
+                            )[0]?.full_name
+                          }
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap bg-gray-50 space-y-2 text-gray-500">
+                        {getButtonLinks(item.links).map((btnLink) => (
+                          <div key={btnLink.label} className="w-full ">
+                            <a
+                              href={btnLink.link}
+                              className="flex justify-center px-4 py-2 bg-white rounded-lg border    shadow-md"
+                            >
+                              {btnLink.label}
+                            </a>
+                          </div>
+                        ))}
+                      </div>
                     </div>
 
                     {/* flight number */}
-                    <div className="bg-red-300">
-                      <h1>#{item.flight_number}</h1>
-                      <p>Flight Number</p>
+                    <div className="">
+                      <h1 className="font-bellefair text-2xl">
+                        # {item?.flight_number}
+                      </h1>
+                      <p className="font-barlow">Flight Number</p>
                     </div>
                   </div>
                 </div>
@@ -296,12 +370,11 @@ export default function Mission() {
             </div>
           </div>
 
-          <div className="flex">
+          <div className="flex justify-center   bg-gray-200 w-full">
             <p
               onClick={slideToTop}
-              className="text-gray-800 w-full text-center underline underline-offset-2"
+              className="text-gray-800   underline underline-offset-2 "
             >
-              {" "}
               Back to top
             </p>
           </div>
