@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import "animate.css";
+
+import Header from "./Components/shared/Header";
+import Home from "./Pages/home/Home";
+import Destination from "./Pages/destination/Destination";
+import Crew from "./Pages/crew/Crew";
+import Technology from "./Pages/technology/Technology";
+import Notfound from "./Pages/Notfound";
+import Mission from "./Pages/mission/Mission";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-screen relative">
+      <div className="w-full  bg-transparent   absolute top-0 lg:mt-5">
+        <Header />
+      </div>
+      <div className="w-full h-screen  ">
+        <Routes>
+          <Route path="/">
+            <Route index element={<Home />} />
+            <Route path="destination" element={<Destination />} />
+            <Route path="crew" element={<Crew />} />
+            <Route path="technology" element={<Technology />} />
+            <Route path="mission" element={<Mission />} />
+            <Route path="*" element={<Notfound />} />
+          </Route>
+        </Routes>
+      </div>
     </div>
   );
 }
