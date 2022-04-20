@@ -1,12 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
 import Select from "react-select";
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
-
-const Selectbox = () => <Select options={options} />;
-
-export default Selectbox;
+export default function SelectBox({
+  label,
+  options,
+  placeholder,
+  name,
+  optionSelected,
+}) {
+  return (
+    <>
+      <label htmlFor={name} className="px-2 ">
+        {label}
+      </label>
+      <Select
+        name={name}
+        options={options}
+        placeholder={placeholder}
+        onChange={(e) => optionSelected(e.value)}
+      />
+    </>
+  );
+}
