@@ -109,7 +109,8 @@ function HorizontalNavbar({ navs }) {
       className="hidden 
       md:w-full md:flex md:h-full  md:justify-evenly  md:bg-gray-700 md:bg-opacity-30 
       lg:backdrop-blur-[40px]  
-      bg-opacity-25 "
+      bg-opacity-25 
+      "
     >
       {navs.map((nav) => (
         <li

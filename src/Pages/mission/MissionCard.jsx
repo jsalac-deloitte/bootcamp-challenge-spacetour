@@ -56,7 +56,7 @@ export default function MissionCard({
 
         {/* content */}
 
-        <div className="md:flex-auto space-y-4 ">
+        <div className="md:flex-auto space-y-4 lg:space-y-8">
           <div className="md:text-left md:px-4">
             {/* rocket name and payload id */}
             <h1 className="font-barlow text-lg font-bold ">
@@ -85,10 +85,10 @@ export default function MissionCard({
 
         {/* flight number */}
         <div className="md:w-36">
-          <h1 className="font-bellefair text-2xl md:text-3xl ">
+          <h1 className="font-bellefair text-2xl md:text-3xl lg:font-bold ">
             # {flightNumber}
           </h1>
-          <p className="font-barlow">Flight Number</p>
+          <p className="font-barlow text-gray-500">Flight Number</p>
         </div>
       </div>
     </div>

@@ -177,21 +177,21 @@ export default function Mission() {
   };
 
   return (
-    <div className="h-screen w-full ">
+    <div className="h-screen w-full  ">
       {/* header */}
       <MissionBanner slideToMissions={slideToMissions} />
       {/* content */}
       <div
-        className="w-full  h-screen  px-4 pt-6 bg-gray-200 "
+        className="w-full  h-full  px-4 lg:px-2 pt-6 bg-gray-200 border-4 lg:h-[99%] lg:w-[99%]  "
         ref={findMission}
       >
         {/* container */}
         <div className=" w-full h-full relative  overflow-y-hidden   ">
           {/* filter */}
           <form onSubmit={submitForm} className=" flex-none   ">
-            <div className="h-auto bg-gray-100 flex flex-col md:flex-row md:flex-wrap  px-2 py-6 space-y-4  tracking-widest text-gray-800">
+            <div className="h-auto bg-gray-100 flex flex-col md:flex-row md:flex-wrap  px-2 py-6 space-y-4 lg:space-y-0 tracking-widest text-gray-800">
               {/*  tablet view */}
-              <div className="w-full md:flex space-y-4 md:space-y-0">
+              <div className="w-full md:flex  space-y-4 md:space-y-0 lg:w-2/5">
                 <div className="flex flex-col w-full md:w-1/2 px-2">
                   <label htmlFor="keyword" className="px-4 ">
                     Keyword
@@ -214,7 +214,7 @@ export default function Mission() {
                 </div>
               </div>
               {/*  tablet view */}
-              <div className="w-full md:flex space-y-4 md:space-y-0">
+              <div className="w-full md:flex space-y-4 md:space-y-0 lg:w-2/5">
                 <div className="w-full md:w-1/2 px-2">
                   <SelectBox
                     options={minYear}
@@ -235,15 +235,17 @@ export default function Mission() {
                   />
                 </div>
               </div>
-              <div className="w-full  px-2">
-                <Button type="submit" label="Apply" />
+              <div className="w-full  px-2 lg:w-1/5  lg:flex lg:items-end pb-1">
+                <div className="w-full">
+                  <Button type="submit" label="Apply" />
+                </div>
               </div>
             </div>
           </form>
           {/* results */}
-          <div className="h-[60%] md:h-[88%] lg:h-[75%] flex flex-col w-full    bg-gray-100 space-y-6  mt-4 overflow-y-hidden ">
+          <div className="h-[60%] md:h-[88%] lg:h-full  flex flex-col w-full    bg-gray-100 space-y-6  mt-4 overflow-y-hidden ">
             {/* showing  label result*/}
-            <div className="h-[80%]  overflow-y-hidden pb-8">
+            <div className="h-[80%]  lg:h-[84%] overflow-y-hidden pb-8">
               <div className="flex justify-center ">
                 {launches.length > 0 && (
                   <p>showing {launches.length} missions </p>
@@ -278,10 +280,10 @@ export default function Mission() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center  h-10 absolute bottom-0  bg-gray-200    w-full">
+          <div className="flex items-center justify-center  h-10 absolute bottom-0 lg:bottom-0  bg-gray-200   w-full lg:h-auto lg:justify-end  px-4">
             <p
               onClick={slideToTop}
-              className=" text-gray-800   underline underline-offset-2 "
+              className=" text-gray-800   underline underline-offset-2 cursor-pointer "
             >
               Back to top
             </p>
