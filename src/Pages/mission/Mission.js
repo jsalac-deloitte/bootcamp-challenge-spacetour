@@ -181,11 +181,14 @@ export default function Mission() {
       {/* header */}
       <MissionBanner slideToMissions={slideToMissions} />
       {/* content */}
-      <div className="w-full  h-full  px-4 pt-6 bg-gray-200 " ref={findMission}>
+      <div
+        className="w-full  h-screen  px-4 pt-6 bg-gray-200 "
+        ref={findMission}
+      >
         {/* container */}
-        <div className=" w-full h-full relative  overflow-y-scroll ">
+        <div className=" w-full h-full relative  overflow-y-hidden   ">
           {/* filter */}
-          <form onSubmit={submitForm} className="h-auto  ">
+          <form onSubmit={submitForm} className=" flex-none   ">
             <div className="h-auto bg-gray-100 flex flex-col md:flex-row md:flex-wrap  px-2 py-6 space-y-4  tracking-widest text-gray-800">
               {/*  tablet view */}
               <div className="w-full md:flex space-y-4 md:space-y-0">
@@ -232,50 +235,53 @@ export default function Mission() {
                   />
                 </div>
               </div>
-              <div className="w-full md:w-1/2 px-2">
+              <div className="w-full  px-2">
                 <Button type="submit" label="Apply" />
               </div>
             </div>
           </form>
           {/* results */}
-          <div className="w-full h-1/2  bg-gray-50 space-y-6 overflow-y-scroll mt-4 ">
+          <div className="h-[60%] md:h-[88%] lg:h-[75%] flex flex-col w-full    bg-gray-100 space-y-6  mt-4 overflow-y-hidden ">
             {/* showing  label result*/}
-
-            <div className="flex justify-center ">
-              {launches.length > 0 && (
-                <p>showing {launches.length} missions </p>
-              )}
-              {launches.length <= 0 && <p>No missions found</p>}
-            </div>
-            {/* list of items */}
-            <div className="h-full overflow-y-scroll  px-4  ">
-              {/* item */}
-              {launches.map((item, index) => (
-                <MissionCard
-                  key={index}
-                  flightImage={item.links?.mission_patch}
-                  flightNumber={item.flightNumber}
-                  rocketName={item.rocket.rocket_name}
-                  payloadId={item?.payloads[0]?.payload_id}
-                  btnLinks={item.links}
-                  flightSuccess={item.launch_success && item.land_success}
-                  launchDate={item.launch_date_local}
-                  launchTime={item.launch_date_local}
-                  launchFrom={
-                    launchpads.filter(
-                      (pad) => item?.launch_site?.site_id === pad?.id
-                    )[0]?.full_name
-                  }
-                  refName={index === 0 ? topPart : missionRef}
-                />
-              ))}
+            <div className="h-[80%]  overflow-y-hidden pb-8">
+              <div className="flex justify-center ">
+                {launches.length > 0 && (
+                  <p>showing {launches.length} missions </p>
+                )}
+                {launches.length <= 0 && <p>No missions found</p>}
+              </div>
+              {/* list of items */}
+              <div className="h-full">
+                {/* item */}
+                <div className="h-full overflow-y-scroll   px-4 ">
+                  {launches.map((item, index) => (
+                    <MissionCard
+                      key={index}
+                      flightImage={item.links?.mission_patch}
+                      flightNumber={item.flight_number}
+                      rocketName={item.rocket.rocket_name}
+                      payloadId={item?.payloads[0]?.payload_id}
+                      btnLinks={item.links}
+                      flightSuccess={item.launch_success && item.land_success}
+                      launchDate={item.launch_date_local}
+                      launchTime={item.launch_date_local}
+                      launchFrom={
+                        launchpads.filter(
+                          (pad) => item?.launch_site?.site_id === pad?.id
+                        )[0]?.full_name
+                      }
+                      refName={index === 0 ? topPart : missionRef}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="flex justify-center   bg-gray-200 w-full">
+          <div className="flex items-center justify-center  h-10 absolute bottom-0  bg-gray-200    w-full">
             <p
               onClick={slideToTop}
-              className="text-gray-800   underline underline-offset-2 "
+              className=" text-gray-800   underline underline-offset-2 "
             >
               Back to top
             </p>

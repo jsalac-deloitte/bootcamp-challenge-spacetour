@@ -2,18 +2,18 @@ import React from "react";
 
 export default function MissonBanner({ slideToMissions }) {
   return (
-    <div className="h-full w-full bg-desktop-mission bg-center  ">
+    <div className="h-screen w-full bg-desktop-mission bg-cover bg-center bg-no-repeat bg-green-500  ">
       {/* header container */}
       <div className=" w-full h-full px-4">
         {/* nav */}
-        <div className=" h-[25%] flex  justify-center items-center">
+        <div className=" h-[25%] flex  justify-center items-center md:items-end">
           <h2 className="text-white font-barlow-condensed font-bont text-2xl tracking-[4px]">
             SPACE SAVVY
           </h2>
         </div>
         {/* text */}
-        <div className="text-white h-[75%] flex flex-col justify-around ">
-          <h1 className="font-bellefair text-[60px] text-center tracking-widest">
+        <div className="text-white h-[75%] flex flex-col justify-around  md:px-28">
+          <h1 className="font-bellefair text-[60px] md:text-[80px] text-center tracking-widest">
             Discover Space Mission
           </h1>
           <div className="flex justify-center ">

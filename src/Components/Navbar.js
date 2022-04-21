@@ -42,7 +42,7 @@ function VerticalNavbar({ navs }) {
   const [showMenu, toggle] = useReducer((showMenu) => !showMenu, false);
 
   return (
-    <div className="flex items-center md:bg-red-400 h-full  justify-end pr-[24px] md:hidden">
+    <div className="flex items-center  h-full  justify-end pr-[24px] md:hidden">
       <img
         className={showMenu ? "hidden" : ""}
         src={menuIcon}

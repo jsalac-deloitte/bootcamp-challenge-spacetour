@@ -43,19 +43,23 @@ export default function MissionCard({
   };
 
   return (
-    <div key={flightNumber} className="flex   bg-gray-50 px-8   " ref={refName}>
-      <div className="w-full flex flex-col text-center space-y-4 border-b py-8">
+    <div className="flex   bg-gray-50 px-8 md:px-4   " ref={refName}>
+      <div className="w-full flex flex-col md:flex-row text-center space-y-4 border-b py-8 ">
         {/* logo */}
-        <div className=" flex justify-center">
-          <Image imgSrc={flightImage} imgAlt={flightImage} classes="w-20" />
+        <div className="md:flex-none flex justify-center">
+          <Image
+            imgSrc={flightImage}
+            imgAlt={flightImage}
+            classes="w-20 md:w-40 md:h-40"
+          />
         </div>
 
         {/* content */}
 
-        <div className="space-y-4 ">
-          <div>
+        <div className="md:flex-auto space-y-4 ">
+          <div className="md:text-left md:px-4">
             {/* rocket name and payload id */}
-            <h1 className="font-barlow text-lg font-bold">
+            <h1 className="font-barlow text-lg font-bold ">
               {rocketName} {" - "}
               {payloadId}
               {!flightSuccess && (
@@ -70,9 +74,9 @@ export default function MissionCard({
               {launchFrom}
             </p>
           </div>
-          <div className="flex flex-wrap bg-gray-50 space-y-2 text-gray-500">
+          <div className="flex flex-wrap bg-gray-50 space-y-2  md:space-y-0 pl-2  text-gray-500">
             {getButtonLinks(btnLinks).map((btnLink) => (
-              <div key={btnLink.label} className="w-full ">
+              <div key={btnLink.label} className="w-full md:w-auto px-1 py-1">
                 <ButtonLink btnLink={btnLink.link} btnLabel={btnLink.label} />
               </div>
             ))}
@@ -80,8 +84,10 @@ export default function MissionCard({
         </div>
 
         {/* flight number */}
-        <div className="">
-          <h1 className="font-bellefair text-2xl"># {flightNumber}</h1>
+        <div className="md:w-36">
+          <h1 className="font-bellefair text-2xl md:text-3xl ">
+            # {flightNumber}
+          </h1>
           <p className="font-barlow">Flight Number</p>
         </div>
       </div>
