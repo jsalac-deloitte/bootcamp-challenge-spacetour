@@ -40,11 +40,14 @@ export default function Destination() {
             {navs.map((nav, index) => (
               <li
                 key={nav}
-                className={
-                  nav === content[selectedPlanet].destination
-                    ? "underline underline-offset-4"
-                    : ""
-                }
+                className={`
+                   hover:border-gray-500 hover:border-b-2
+                  ${
+                    nav === content[selectedPlanet].destination
+                      ? "underline underline-offset-4"
+                      : ""
+                  }
+                `}
                 onClick={() => setSelectedPlanet(index)}
               >
                 {nav}

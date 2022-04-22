@@ -20,11 +20,13 @@ export default function Home() {
             {content.description}
           </p>
         </div>
-        <div className="flex justify-center lg:w-1/2 lg:justify-end">
-          <div className="flex items-center justify-center bg-white h-[150px] w-[150px] rounded-full md:h-[242px] md:w-[242px] md:text-[32px] lg:w-[274px] lg:h-[274px]">
-            <Link to="/destination" className="font-bellefair">
-              EXPLORE
-            </Link>
+        <div className="flex justify-center lg:w-1/2 lg:justify-end ">
+          <div className="flex items-center rounded-full justify-center w-[190px]  md:h-[272px] md:w-[272px] md:text-[32px] lg:w-[400px] lg:h-[400px]  hover:bg-gray-50 hover:bg-opacity-25">
+            <div className="flex items-center justify-center bg-white h-[150px] w-[150px] rounded-full md:h-[242px] md:w-[242px] md:text-[32px] lg:w-[274px] lg:h-[274px]">
+              <Link to="/destination" className="font-bellefair">
+                EXPLORE
+              </Link>
+            </div>
           </div>
         </div>
       </div>

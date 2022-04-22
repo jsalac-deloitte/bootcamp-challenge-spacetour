@@ -50,7 +50,7 @@ export default function MissionCard({
           <Image
             imgSrc={flightImage}
             imgAlt={flightImage}
-            classes="w-20 md:w-40 md:h-40"
+            classes="w-20 md:w-40 md:h-40 lg:h-60 lg:w-60"
           />
         </div>
 

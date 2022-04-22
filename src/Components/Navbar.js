@@ -75,7 +75,7 @@ function VerticalNavbar({ navs }) {
             {navs.map((nav) => (
               <li
                 key={nav.id}
-                className={`text-white pl-[32px] tracking-widest ${
+                className={`text-white pl-[32px] tracking-widest hover:border-r-4 ${
                   nav.to === activePage ? "border-r-4" : ""
                 } `}
                 onClick={toggle}
@@ -107,7 +107,7 @@ function HorizontalNavbar({ navs }) {
   return (
     <ul
       className="hidden 
-      md:w-full md:flex md:h-full  md:justify-evenly  md:bg-gray-700 md:bg-opacity-30 
+      md:w-full md:flex md:h-20 lg:h-20  md:justify-evenly  md:bg-gray-700 md:bg-opacity-30 
       lg:backdrop-blur-[40px]  
       bg-opacity-25 
       "
@@ -117,7 +117,9 @@ function HorizontalNavbar({ navs }) {
           key={nav.id}
           className={`text-white 
           md:flex md:items-center 
-     
+          md:h-full
+          hover:border-b-4
+          hover:border-gray-500
           ${nav.to === activePage ? "text-gray-400 border-b-4" : ""}`}
         >
           <Link to={nav.to}>

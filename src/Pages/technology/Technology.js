@@ -15,7 +15,6 @@ export default function Technology() {
 
   const scrollToImage = (index) => {
     setSelectedTechnolgy(index);
-    console.log(index);
     refs[index].current.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
@@ -43,7 +42,7 @@ export default function Technology() {
           <div className="lg:w-full  flex  lg:h-full  overflow-x-hidden ">
             {content.map((item, index) => (
               <div
-                className="w-full flex flex-shrink-0 "
+                className="w-full flex flex-shrink-0  lg:justify-end"
                 key={item.name}
                 ref={refs[index]}
               >
@@ -53,7 +52,7 @@ export default function Technology() {
                   alt={content[index].name}
                 />
                 <img
-                  className="hidden w-full lg:flex  lg:object-scale-down h-full"
+                  className="hidden w-auto lg:flex   "
                   src={content[index].portrait}
                   alt={content[index].name}
                 />
@@ -67,7 +66,7 @@ export default function Technology() {
                 <li
                   key={nav}
                   onClick={() => scrollToImage(index)}
-                  className={`w-[40px] h-[40px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px] text-[16px] md:text-[24px] rounded-full border  flex items-center justify-center font-bellefair 
+                  className={`w-[40px] h-[40px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px] text-[16px] md:text-[24px] rounded-full border border-gray-700 hover:border-gray-300  flex items-center justify-center font-bellefair 
                   ${
                     nav == content[selectedTechnology].id
                       ? "bg-white text-black"
