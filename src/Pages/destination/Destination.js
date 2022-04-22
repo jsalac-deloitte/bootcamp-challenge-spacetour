@@ -8,6 +8,20 @@ const bgImage =
 export default function Destination() {
   const [selectedPlanet, setSelectedPlanet] = useState(0);
 
+  const refs = navs.reduce((list, item, index) => {
+    list[index] = React.createRef(null);
+    return list;
+  }, []);
+
+  const scrollToPlanet = (index) => {
+    setSelectedPlanet(index);
+    refs[index].current.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  };
+
   return (
     <div
       className={`h-full bg-gray-500 pt-[88px]  ${bgImage} overflow-auto flex flex-col justify-center lg:flex-row lg:items-center lg:pb-20`}
@@ -21,12 +35,20 @@ export default function Destination() {
             PICK YOUR DESTINATION
           </h2>
         </div>
-        <div className="flex justify-center mt-[32px]  lg:h-3/4 lg:items-center ">
-          <img
-            src={content[selectedPlanet].img}
-            alt={content[selectedPlanet].destination}
-            className="w-[170px] h-[170px] md:w-[300px] md:h-[300px] lg:w-[445px] lg:h-[445px]"
-          />
+        <div className="w-full flex  mt-[32px]  lg:h-3/4 lg:items-center  overflow-hidden">
+          {content.map((planet, index) => (
+            <div
+              key={index}
+              className="w-full flex justify-center flex-shrink-0"
+              ref={refs[index]}
+            >
+              <img
+                src={planet.img}
+                alt={planet.destination}
+                className="w-[170px] h-[170px] md:w-[300px] md:h-[300px] lg:w-[445px] lg:h-[445px]"
+              />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -41,14 +63,14 @@ export default function Destination() {
               <li
                 key={nav}
                 className={`
-                   hover:border-gray-500 hover:border-b-2
+                   hover:border-gray-500 hover:border-b-2 cursor-pointer
                   ${
                     nav === content[selectedPlanet].destination
                       ? "underline underline-offset-4"
                       : ""
                   }
                 `}
-                onClick={() => setSelectedPlanet(index)}
+                onClick={() => scrollToPlanet(index)}
               >
                 {nav}
               </li>
