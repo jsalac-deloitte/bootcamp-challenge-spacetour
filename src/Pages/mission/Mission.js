@@ -182,7 +182,7 @@ export default function Mission() {
       <MissionBanner slideToMissions={slideToMissions} />
       {/* content */}
       <div
-        className="w-full  h-full  px-4 lg:px-2 pt-6 bg-gray-200 border-4 lg:h-[99%] lg:w-[99%]  "
+        className="w-full  h-full  px-4 lg:px-2 pt-6 bg-gray-200 border-4 lg:h-[99%] lg:w-[99%] overflow-x-hidden "
         ref={findMission}
       >
         {/* container */}
@@ -246,7 +246,7 @@ export default function Mission() {
           <div className="h-[60%] md:h-[88%] lg:h-full  flex flex-col w-full    bg-gray-100 space-y-6  mt-4 overflow-y-hidden ">
             {/* showing  label result*/}
             <div className="h-[80%]  lg:h-[84%] overflow-y-hidden pb-8">
-              <div className="flex justify-center ">
+              <div className="flex justify-center text-gray-500 text-[20px] ">
                 {launches.length > 0 && (
                   <p>showing {launches.length} missions </p>
                 )}

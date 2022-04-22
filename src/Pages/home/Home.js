@@ -9,14 +9,14 @@ export default function Home() {
   return (
     <div className={`h-full bg-gray-500  ${bgImage} overflow-auto`}>
       <div className="flex flex-col justify-between h-full pt-[112px] pb-14  md:pt-[202px] md:px-[150px]  lg:flex-row lg:items-center ">
-        <div className=" lg:w-2/5">
+        <div className=" lg:w-2/5 ">
           <h2 className="text-caption text-center font-bellefair md:text-[24px] lg:text-left lg:text-[28px]">
             {content.title.toUpperCase()}
           </h2>
           <h1 className="font-bellefair text-[80px] text-center text-caption md:text-[150px] lg:text-left">
             {content.caption.toUpperCase()}
           </h1>
-          <p className="text-desc text-center text-[15px] px-[24px] md:text-[16px] lg:text-left lg:pr-[140px] lg:text-[18px]">
+          <p className="font-thin text-desc text-center text-[15px] px-[24px] lg:px-0 md:text-[20px] lg:text-left lg:pr-[120px] lg:text-[24px]">
             {content.description}
           </p>
         </div>

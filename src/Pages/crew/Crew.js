@@ -39,7 +39,7 @@ export default function Crew() {
     >
       <div className="h-screen md:flex md:flex-col md:justify-between ">
         <div className="flex flex-col justify-between text-white h-2/5 md:h-12   px-[24px] md:px-0  mt-[88px] ">
-          <div className="flex justify-center   font-barlow-condensed tracking-[4px] text-[16px] md:justify-start md:pl-[38px] md:pt-[24px]   ">
+          <div className="flex justify-center   font-barlow-condensed tracking-[4px] text-[16px] md:text-[20px] md:justify-start md:pl-[38px] md:pt-[24px]   ">
             <h2 className="font-thin ">
               <span className="font-bold text-gray-600">
                 {content[selectedCrew].id}
@@ -104,7 +104,7 @@ export default function Crew() {
                   </h1>
                 </div>
                 <div className="px-[24px] md:px-[97px] lg:px-0 h-2/3 lg:pr-[20%]">
-                  <p className="text-desc text-center font-barlow font-thin text-[15px] px-[24px] md:text-[16px]  lg:text-left lg:px-0 lg:text-[18px]">
+                  <p className="text-desc text-center font-barlow font-thin text-[15px] px-[24px] md:text-[18px]  lg:text-left lg:px-0 lg:text-[22px]">
                     {content[selectedCrew].about}
                   </p>
                 </div>

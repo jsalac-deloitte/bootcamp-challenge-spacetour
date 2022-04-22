@@ -30,7 +30,7 @@ export default function Technology() {
       <div className="space-y-[32px] lg:space-y-0  lg:h-full lg:flex lg:flex-col lg:justify-center ">
         {/* tag line */}
         <div className=" flex justify-center px-[38.5px] lg:px-[166px] md:justify-start  lg:h-11">
-          <h2 className="text-white font-barlow-condensed tracking-[3px] text-[16px] lg:text-[28px]">
+          <h2 className="text-white font-barlow-condensed tracking-[3px] text-[16px] md:text-[20px] lg:text-[28px]">
             <span className="font-bold text-gray-500">
               {content[selectedTechnology].id}
             </span>{" "}
@@ -82,7 +82,7 @@ export default function Technology() {
             <div className="space-y-[16px] lg:pl-[10%]  lg:flex lg:flex-col lg:justify-center ">
               {/* label and title */}
               <div className=" text-white text-center lg:text-left font-thin ">
-                <h2 className="font-barlow-condensed text-[14px] md:text-[16px] tracking-[2px]">
+                <h2 className="font-barlow-condensed text-[14px]  md:text-[20px] lg:text-[24px] tracking-[2px]">
                   THE TERMINOLOGY...
                 </h2>
                 <h1 className="font-bellefair text-[24px] md:text-[40px] lg:text-[50px] ">
@@ -91,7 +91,7 @@ export default function Technology() {
               </div>
               {/* description */}
               <div className=" text-center lg:text-left font-barlow px-[24px] md:px-[155px] lg:px-0  lg:pr-[5%]">
-                <p className="text-desc text-[15px] md:text-[16px] lg:text-[18px] ">
+                <p className="font-thin text-desc text-[15px] md:text-[18px] lg:text-[22px] ">
                   {content[selectedTechnology].about}
                 </p>
               </div>

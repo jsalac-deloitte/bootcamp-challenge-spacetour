@@ -123,7 +123,7 @@ function HorizontalNavbar({ navs }) {
           ${nav.to === activePage ? "text-gray-400 border-b-4" : ""}`}
         >
           <Link to={nav.to}>
-            <h2 className="flex space-x-2 tracking-widest font-barlow-condensed text-[14px] lg:text-[19px]">
+            <h2 className="flex space-x-2 tracking-widest font-barlow-condensed text-[14px] md:text-[16px] lg:text-[24px]">
               <span className="font-bold hidden lg:block"> {nav.id} </span>
               <span className="font-thin ">{nav.title}</span>
             </h2>

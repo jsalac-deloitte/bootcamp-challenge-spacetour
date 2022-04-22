@@ -27,7 +27,7 @@ export default function Destination() {
       className={`h-full bg-gray-500 pt-[88px]  ${bgImage} overflow-auto flex flex-col justify-center lg:flex-row lg:items-center lg:pb-20`}
     >
       <div className="text-white  lg:w-3/6 lg:h-full">
-        <div className="flex justify-center font-barlow-condensed tracking-[2px] text-[16px] md:justify-start md:pl-[38px] lg:text-[28px] lg:h-1/4 lg:px-36 lg:items-end  ">
+        <div className="flex justify-center font-barlow-condensed tracking-[2px] text-[16px] md:text-[20px] md:justify-start md:pl-[38px] lg:text-[28px] lg:h-1/4 lg:px-36 lg:items-end  ">
           <h2 className="font-thin ">
             <span className="font-bold text-gray-600">
               {content[selectedPlanet].id}{" "}
@@ -55,7 +55,7 @@ export default function Destination() {
       <div className="lg:w-1/3">
         <div className="md:flex md:justify-center  lg:justify-start ">
           <ul
-            className="flex justify-around px-[69px] text-white font-thin font-barlow-condensed text-[14px] mt-[26px] md:text-[19px] 
+            className="flex justify-around px-[69px] text-white font-thin font-barlow-condensed text-[16px] mt-[26px] md:text-[26px] lg:text-[30px] 
             md:justify-evenly md:px-0 md:w-1/2
             lg:px-0 lg:justify-start lg:space-x-[35px]"
           >
@@ -83,7 +83,7 @@ export default function Destination() {
           </h1>
         </div>
         <div className="px-[24px] md:px-[97px] lg:px-0  lg:pr-44">
-          <p className="text-desc text-center font-barlow font-thin text-[15px] px-[24px] md:text-[16px] lg:text-left lg:px-0">
+          <p className="text-desc text-center font-barlow font-thin text-[15px] px-[24px] md:text-[20px] lg:text-[24px] lg:text-left lg:px-0">
             {content[selectedPlanet].description}
           </p>
         </div>
@@ -95,18 +95,18 @@ export default function Destination() {
                     lg:px-0  lg:justify-start lg:text-left lg:space-x-[79px]"
         >
           <div className="flex flex-col space-y-[4px] ">
-            <h4 className="font-barlow-condensed font-thin tracking-wider">
+            <h4 className="font-barlow-condensed font-thin tracking-wider md:text-[20px] lg:text-[26px]">
               AVG. DISTANCE
             </h4>
-            <h3 className="text-3xl font-bellefair">
+            <h3 className="text-3xl font-bellefair lg:text-[40px]">
               {content[selectedPlanet].distance}
             </h3>
           </div>
           <div className="flex flex-col space-y-[4px]">
-            <h4 className="font-barlow-condensed font-thin tracking-wider">
+            <h4 className="font-barlow-condensed font-thin tracking-wider md:text-[20px] lg:text-[26px]">
               EST. TRAVEL TIME
             </h4>
-            <h3 className="text-3xl font-bellefair">
+            <h3 className="text-3xl font-bellefair lg:text-[40px]">
               {content[selectedPlanet].travelTime}
             </h3>
           </div>
