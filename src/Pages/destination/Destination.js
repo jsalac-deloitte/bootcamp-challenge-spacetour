@@ -55,7 +55,7 @@ export default function Destination() {
       <div className="lg:w-1/3  lg:pl-10 ">
         <div className="md:flex md:justify-center  lg:justify-start ">
           <ul
-            className="flex justify-around px-[69px] text-white font-thin font-barlow-condensed text-[16px] mt-[26px] md:text-[26px] lg:text-[26px] 
+            className="flex justify-around px-[69px] text-white font-thin font-barlow-condensed text-[14px] mt-[26px] md:text-[20px] lg:text-[26px] 
             md:justify-evenly md:px-0 md:w-1/2
             lg:px-0 lg:justify-start lg:space-x-[35px]"
           >
