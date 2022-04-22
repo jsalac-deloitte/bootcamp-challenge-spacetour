@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MissonBanner({ slideToMissions }) {
   return (
-    <div className="h-screen w-full bg-desktop-mission bg-cover bg-center bg-no-repeat bg-green-500  ">
+    <div className="h-screen w-full bg-desktop-mission bg-cover bg-center bg-no-repeat   ">
       {/* header container */}
       <div className=" w-full h-full px-4">
         {/* nav */}
