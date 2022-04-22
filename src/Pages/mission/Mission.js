@@ -42,11 +42,8 @@ export default function Mission() {
     try {
       const response = await API.get("/launchpads");
       setLaunchPads(response.data);
-
-      let selectOptions = launchpads.map((item) => {
-        return { value: item.id, label: item.full_name };
-      });
-      setLaunchPadDropdown(selectOptions);
+      const lp = await getLaunchPads(response.data);
+      setLaunchPadDropdown(lp);
     } catch (error) {
       //not 200 response range
       console.log(err.response.data);
@@ -70,6 +67,24 @@ export default function Mission() {
       ["ANY"]
     );
   };
+
+  const getLaunchPads = async (option) => {
+    return option.reduce(
+      (list, item, index) => {
+        list.push({ value: item.id, label: item.full_name });
+        return list;
+      },
+      [{ value: "", label: "ANY" }]
+    );
+  };
+
+  useEffect(() => {
+    const selectOptionYear = years.map((item) => {
+      return { value: item, label: item };
+    });
+    setMinYear(selectOptionYear);
+    setMaxYear(selectOptionYear);
+  }, [years]);
 
   useEffect(() => {
     const selectOptionYear = years.map((item) => {
@@ -115,7 +130,7 @@ export default function Mission() {
       selectedMinYear !== "" &&
       selectedMinYear !== "ANY"
     ) {
-      searchCriteria += "&launch_date_local_lte=" + selectedMinYear;
+      searchCriteria += "&launch_date_local_gte=" + selectedMinYear;
     }
 
     // add the max year to query parameter
