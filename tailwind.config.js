@@ -27,7 +27,8 @@ module.exports = {
           "url('../public/assets/crew/background-crew-tablet.jpg')",
         "desktop-crew":
           "url('../public/assets/crew/background-crew-desktop.jpg')",
-        "desktop-mission": "url('../public/assets/space-photo.jpeg')",
+        "desktop-galaxy": "url('../public/assets/home/galaxy.jpeg')",
+        "desktop-mission": "url('../public/assets/galaxy.jpeg')",
       },
       fontFamily: {
         "barlow-condensed": ["Barlow Condensed", "sans-serif"],

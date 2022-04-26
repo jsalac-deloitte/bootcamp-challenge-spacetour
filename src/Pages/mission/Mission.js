@@ -192,19 +192,19 @@ export default function Mission() {
   };
 
   return (
-    <div className="h-screen w-full  ">
+    <div className="h-screen  w-full  ">
       {/* header */}
       <MissionBanner slideToMissions={slideToMissions} />
       {/* content */}
       <div
-        className="w-full  h-full  px-4 lg:px-2 pt-6 bg-gray-200 border-4 lg:h-[99%] lg:w-[99%] overflow-x-hidden "
+        className="w-full  h-full  px-4 lg:px-2 pt-6  lg:h-[99%] lg:w-[99%] overflow-x-hidden bg-desktop-galaxy "
         ref={findMission}
       >
         {/* container */}
         <div className=" w-full h-full relative  overflow-y-hidden   ">
           {/* filter */}
           <form onSubmit={submitForm} className=" flex-none   ">
-            <div className="h-auto bg-gray-100 flex flex-col md:flex-row md:flex-wrap  px-2 py-6 space-y-4 lg:space-y-0 tracking-widest text-gray-800">
+            <div className="h-auto bg-transparent flex flex-col md:flex-row md:flex-wrap  px-2 py-6 space-y-4 lg:space-y-0 tracking-widest rounded-xl text-white  ">
               {/*  tablet view */}
               <div className="w-full md:flex  space-y-4 md:space-y-0 lg:w-2/5">
                 <div className="flex flex-col w-full md:w-1/2 px-2">
@@ -214,7 +214,7 @@ export default function Mission() {
                   <input
                     type="text"
                     placeholder="e.g falcon"
-                    className="rounded-lg"
+                    className="rounded-lg text-gray-800"
                     onChange={(e) => setKeyword(e.target.value)}
                   />
                 </div>
@@ -258,10 +258,10 @@ export default function Mission() {
             </div>
           </form>
           {/* results */}
-          <div className="h-[60%] md:h-[88%] lg:h-full  flex flex-col w-full    bg-gray-100 space-y-6  mt-4 overflow-y-hidden ">
+          <div className="h-[60%] md:h-[88%] lg:h-full  flex flex-col w-full    bg-transparent space-y-6  mt-4 overflow-y-hidden ">
             {/* showing  label result*/}
-            <div className="h-[80%]  lg:h-[84%] overflow-y-hidden pb-8">
-              <div className="flex justify-center text-gray-500 text-[20px] ">
+            <div className="h-[80%]  lg:h-[84%] overflow-y-hidden  pb-8 no-scrollbar">
+              <div className="flex justify-center text-gray-400 text-[20px] ">
                 {launches.length > 0 && (
                   <p>showing {launches.length} missions </p>
                 )}
@@ -270,7 +270,7 @@ export default function Mission() {
               {/* list of items */}
               <div className="h-full">
                 {/* item */}
-                <div className="h-full overflow-y-scroll   px-4 ">
+                <div className="h-full overflow-y-scroll no-scrollbar  px-4 space-y-4 ">
                   {launches.map((item, index) => (
                     <MissionCard
                       key={index}
@@ -295,10 +295,10 @@ export default function Mission() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center  h-10 absolute bottom-0 lg:bottom-0  bg-gray-200   w-full lg:h-auto lg:justify-end  px-4">
+          <div className="flex items-center justify-center  h-10 absolute bottom-0 lg:bottom-0  bg-gray-100 bg-opacity-10  backdrop-blur-[40px]   w-full lg:h-auto lg:justify-end  px-4">
             <p
               onClick={slideToTop}
-              className=" text-gray-800   underline underline-offset-2 cursor-pointer "
+              className=" text-gray-900   underline underline-offset-2 cursor-pointer "
             >
               Back to top
             </p>

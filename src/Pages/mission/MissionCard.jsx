@@ -43,8 +43,11 @@ export default function MissionCard({
   };
 
   return (
-    <div className="flex   bg-gray-50 px-8 md:px-4   " ref={refName}>
-      <div className="w-full flex flex-col md:flex-row text-center space-y-4 border-b py-8 ">
+    <div
+      className="flex   bg-gray-500 bg-opacity-10  backdrop-blur-[40px]  px-8 md:px-4 text-gray-300   "
+      ref={refName}
+    >
+      <div className="w-full flex flex-col md:flex-row text-center space-y-4  py-8 ">
         {/* logo */}
         <div className="md:flex-none flex justify-center">
           <Image
@@ -56,10 +59,10 @@ export default function MissionCard({
 
         {/* content */}
 
-        <div className="md:flex-auto space-y-4 lg:space-y-8">
+        <div className="md:flex-auto space-y-4 lg:space-y-0  lg:flex lg:flex-col lg:justify-around">
           <div className="md:text-left md:px-4">
             {/* rocket name and payload id */}
-            <h1 className="font-barlow text-lg font-bold ">
+            <h1 className="font-barlow text-lg font-bold lg:text-3xl ">
               {rocketName} {" - "}
               {payloadId}
               {!flightSuccess && (
@@ -67,14 +70,14 @@ export default function MissionCard({
               )}
             </h1>
             {/* details about the flight */}
-            <p className="text-gray-500">
+            <p className="text-gray-200 lg:text-2xl">
               Launched {formatDateAndTime(launchDate, "do MMMM yyyy")} at
               {formatDateAndTime(launchTime, "h:m bb")}
               {" from "}
               {launchFrom}
             </p>
           </div>
-          <div className="flex flex-wrap bg-gray-50 space-y-2  md:space-y-0 pl-2  text-gray-500">
+          <div className="flex flex-wrap bg-transparent space-y-2  md:space-y-0 pl-2  text-gray-700">
             {getButtonLinks(btnLinks).map((btnLink) => (
               <div key={btnLink.label} className="w-full md:w-auto px-1 py-1">
                 <ButtonLink btnLink={btnLink.link} btnLabel={btnLink.label} />
@@ -84,11 +87,15 @@ export default function MissionCard({
         </div>
 
         {/* flight number */}
-        <div className="md:w-36">
-          <h1 className="font-bellefair text-2xl md:text-3xl lg:font-bold ">
-            # {flightNumber}
-          </h1>
-          <p className="font-barlow text-gray-500">Flight Number</p>
+        <div className="md:w-36 lg:w-40  lg:flex lg:items-center">
+          <div className="space-y-2 lg:space-y-4">
+            <h1 className="font-bellefair text-2xl md:text-3xl lg:font-bold lg:text-[50px]">
+              # {flightNumber}
+            </h1>
+            <p className="font-barlow text-gray-200 lg:text-2xl">
+              Flight Number
+            </p>
+          </div>
         </div>
       </div>
     </div>

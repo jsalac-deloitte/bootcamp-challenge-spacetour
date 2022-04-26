@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MissonBanner({ slideToMissions }) {
   return (
-    <div className="h-screen w-full bg-desktop-mission bg-cover bg-center bg-no-repeat   ">
+    <div className="h-screen w-full bg-desktop-galaxy bg-cover bg-center bg-no-repeat   ">
       {/* header container */}
       <div className=" w-full h-full px-4">
         {/* nav */}
@@ -13,7 +13,7 @@ export default function MissonBanner({ slideToMissions }) {
         </div>
         {/* text */}
         <div className="text-white h-[75%] flex flex-col justify-around  md:px-28">
-          <h1 className="font-bellefair text-[60px] md:text-[80px] text-center tracking-widest">
+          <h1 className="font-bellefair text-[60px] md:text-[80px] text-center tracking-widest bg-gray-300 bg-opacity-10  backdrop-blur-[40px]">
             Discover Space Mission
           </h1>
           <div className="flex justify-center ">

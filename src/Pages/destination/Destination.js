@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { content, navs } from "./content";
 
@@ -21,6 +21,17 @@ export default function Destination() {
       inline: "start",
     });
   };
+
+  useEffect(() => {
+    const myTime = setInterval(() => {
+      if (selectedPlanet < navs.length - 1) {
+        scrollToPlanet(selectedPlanet + 1);
+      } else {
+        scrollToPlanet(0);
+      }
+    }, 5000);
+    return () => clearInterval(myTime);
+  });
 
   return (
     <div

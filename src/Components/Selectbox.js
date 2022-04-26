@@ -14,6 +14,7 @@ export default function SelectBox({
         {label}
       </label>
       <Select
+        className="text-gray-800"
         name={name}
         options={options}
         placeholder={placeholder}

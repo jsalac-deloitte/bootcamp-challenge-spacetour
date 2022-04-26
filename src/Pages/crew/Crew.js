@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { content, navs } from "./content";
 
@@ -32,6 +32,17 @@ export default function Crew() {
       inline: "start",
     });
   };
+
+  useEffect(() => {
+    const myTime = setInterval(() => {
+      if (selectedCrew < navs.length - 1) {
+        scrollToImage(selectedCrew + 1);
+      } else {
+        scrollToImage(0);
+      }
+    }, 5000);
+    return () => clearInterval(myTime);
+  });
 
   return (
     <div

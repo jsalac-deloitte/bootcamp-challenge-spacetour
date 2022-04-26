@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import { content, navs } from "./content";
 
@@ -21,6 +21,17 @@ export default function Technology() {
       inline: "start",
     });
   };
+
+  useEffect(() => {
+    const myTime = setInterval(() => {
+      if (selectedTechnology < navs.length - 1) {
+        scrollToImage(selectedTechnology + 1);
+      } else {
+        scrollToImage(0);
+      }
+    }, 5000);
+    return () => clearInterval(myTime);
+  });
 
   return (
     <div

@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;500;600;700;800&family=Barlow:wght@100;200;300;400;500;600;700;800&family=Bellefair&display=swap');
 
 @tailwind base;
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
 @tailwind components;
 @tailwind utilities;
 

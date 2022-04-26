@@ -12,7 +12,7 @@ import Mission from "./Pages/mission/Mission";
 
 function App() {
   return (
-    <div className="w-screen relative">
+    <div className="w-screen relative ">
       <div className="w-full  bg-transparent   absolute top-0 lg:mt-5">
         <Header />
       </div>
