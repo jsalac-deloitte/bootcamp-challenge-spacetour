@@ -197,7 +197,7 @@ export default function Mission() {
       <MissionBanner slideToMissions={slideToMissions} />
       {/* content */}
       <div
-        className="w-full  h-full  px-4 lg:px-2 pt-6  lg:h-[99%] lg:w-[99%] overflow-x-hidden bg-desktop-galaxy "
+        className="w-full  h-full  px-4 lg:px-2 pt-6  lg:h-[99%] lg:w-[99%] overflow-x-hidden bg-desktop-galaxy bg-cover bg-center bg-no-repeat "
         ref={findMission}
       >
         {/* container */}
@@ -298,7 +298,7 @@ export default function Mission() {
           <div className="flex items-center justify-center  h-10 absolute bottom-0 lg:bottom-0  bg-gray-100 bg-opacity-10  backdrop-blur-[40px]   w-full lg:h-auto lg:justify-end  px-4">
             <p
               onClick={slideToTop}
-              className=" text-gray-900   underline underline-offset-2 cursor-pointer "
+              className=" text-gray-9jsjjsjj00   underline underline-offset-2 cursor-pointer "
             >
               Back to top
             </p>
