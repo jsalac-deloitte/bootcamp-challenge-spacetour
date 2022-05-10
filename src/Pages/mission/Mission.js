@@ -23,6 +23,7 @@ export default function Mission() {
   const findMission = useRef();
   const topPart = useRef();
   const missionRef = useRef();
+  const notAllowedCharacters = "#$&%^*()/#!_";
 
   //get the launches from api
   const fetchLaunches = async () => {
@@ -46,7 +47,7 @@ export default function Mission() {
       setLaunchPadDropdown(lp);
     } catch (error) {
       //not 200 response range
-      console.log(err.response.data);
+      console.log(error.response.data);
     }
   };
 
@@ -113,7 +114,11 @@ export default function Mission() {
     }
 
     //construct the filter query parameter
-    let searchCriteria = "?q=" + (keyword || "");
+    let searchCriteria = `?`;
+
+    if (keyword !== null && keyword !== "") {
+      searchCriteria += `q=${keyword.toString()}`;
+    }
 
     //add the launch pad to query parameter
     if (
@@ -130,7 +135,7 @@ export default function Mission() {
       selectedMinYear !== "" &&
       selectedMinYear !== "ANY"
     ) {
-      searchCriteria += "&launch_date_local_gte=" + selectedMinYear;
+      searchCriteria += `&launch_date_local_gte=${selectedMinYear}`;
     }
 
     // add the max year to query parameter
@@ -139,7 +144,7 @@ export default function Mission() {
       selectedMaxYear !== "" &&
       selectedMaxYear !== "ANY"
     ) {
-      searchCriteria += "&launch_date_local_lte=" + selectedMaxYear;
+      searchCriteria += `&launch_date_local_lte=${selectedMaxYear + 1}`;
     }
 
     try {
@@ -167,30 +172,6 @@ export default function Mission() {
     });
   };
 
-  const getButtonLinks = (buttonLinks) => {
-    let links = {
-      reddit_campaign: "Reddit Campaign",
-      reddit_launch: "Reddit Launch",
-      reddit_recovery: "Reddit Recovery",
-      reddit_media: "Reddit Media",
-      presskit: "Press",
-      article_link: "Article",
-      video_link: "Watch Videos",
-    };
-
-    let arrayLinks = [];
-    Object.keys(links).forEach((item) => {
-      if (buttonLinks.hasOwnProperty(item) && buttonLinks[item] !== null) {
-        arrayLinks.push({
-          label: links[item],
-          link: buttonLinks[item],
-        });
-      }
-    });
-
-    return arrayLinks;
-  };
-
   return (
     <div className="h-screen  w-full  ">
       {/* header */}
@@ -215,7 +196,17 @@ export default function Mission() {
                     type="text"
                     placeholder="e.g falcon"
                     className="rounded-lg text-gray-800"
-                    onChange={(e) => setKeyword(e.target.value)}
+                    onKeyPress={(event) => {
+                      if (notAllowedCharacters.indexOf(event.key) >= 0) {
+                        event.preventDefault();
+                        Swal.fire({
+                          title: "Warning!",
+                          text: `Invalid Character - Sorry "${notAllowedCharacters}" are special characters and not allowed`,
+                          icon: "warning",
+                        });
+                      }
+                    }}
+                    onChange={(event) => setKeyword(event.target.value)}
                   />
                 </div>
                 <div className="w-full md:w-1/2 px-2">
@@ -271,25 +262,27 @@ export default function Mission() {
               <div className="h-full">
                 {/* item */}
                 <div className="h-full overflow-y-scroll no-scrollbar  px-4 space-y-4 ">
-                  {launches.map((item, index) => (
-                    <MissionCard
-                      key={index}
-                      flightImage={item.links?.mission_patch}
-                      flightNumber={item.flight_number}
-                      rocketName={item.rocket.rocket_name}
-                      payloadId={item?.payloads[0]?.payload_id}
-                      btnLinks={item.links}
-                      flightSuccess={item.launch_success && item.land_success}
-                      launchDate={item.launch_date_local}
-                      launchTime={item.launch_date_local}
-                      launchFrom={
-                        launchpads.filter(
-                          (pad) => item?.launch_site?.site_id === pad?.id
-                        )[0]?.full_name
-                      }
-                      refName={index === 0 ? topPart : missionRef}
-                    />
-                  ))}
+                  {launches.map((item, index) =>
+                    item.payloads.map((payload, payloadIndex) => (
+                      <MissionCard
+                        key={payloadIndex}
+                        flightImage={item.links?.mission_patch}
+                        flightNumber={item.flight_number}
+                        rocketName={item.rocket.rocket_name}
+                        payloadId={payload.payload_id}
+                        btnLinks={item.links}
+                        flightSuccess={item.launch_success && item.land_success}
+                        launchDate={item.launch_date_local}
+                        launchTime={item.launch_date_local}
+                        launchFrom={
+                          launchpads.filter(
+                            (pad) => item?.launch_site?.site_id === pad?.id
+                          )[0]?.full_name
+                        }
+                        refName={index === 0 ? topPart : missionRef}
+                      />
+                    ))
+                  )}
                 </div>
               </div>
             </div>

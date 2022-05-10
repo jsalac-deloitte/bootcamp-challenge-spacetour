@@ -71,10 +71,10 @@ export default function MissionCard({
             </h1>
             {/* details about the flight */}
             <p className="text-gray-200 lg:text-2xl">
-              Launched {formatDateAndTime(launchDate, "do MMMM yyyy")} at
-              {formatDateAndTime(launchTime, "h:m bb")}
-              {" from "}
-              {launchFrom}
+              {`Launched ${formatDateAndTime(launchDate, "do MMMM yyyy")} at 
+              ${formatDateAndTime(launchTime, "h:m bb")}
+              from
+              ${launchFrom}`}
             </p>
           </div>
           <div className="flex flex-wrap bg-transparent space-y-2  md:space-y-0 pl-2  text-gray-700">
