@@ -26,8 +26,8 @@ const navList = [
   },
   {
     id: "04",
-    to: "/mission",
-    title: "MISSION",
+    to: "/discover",
+    title: "DISCOVER",
   },
 ];
 

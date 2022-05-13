@@ -23,7 +23,7 @@ function App() {
             <Route path="destination" element={<Destination />} />
             <Route path="crew" element={<Crew />} />
             <Route path="technology" element={<Technology />} />
-            <Route path="mission" element={<Mission />} />
+            <Route path="discover" element={<Mission />} />
             <Route path="*" element={<Notfound />} />
           </Route>
         </Routes>

@@ -288,7 +288,8 @@ export default function Mission() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center  h-10 absolute bottom-0 lg:bottom-0  bg-gray-100 bg-opacity-10  backdrop-blur-[40px]   w-full lg:h-auto lg:justify-end  px-4">
+          <div className="flex items-center justify-between text-gray-200  h-10 absolute bottom-0 lg:bottom-0  bg-gray-100 bg-opacity-10  backdrop-blur-[40px]   w-full lg:h-auto   px-4">
+            <p>copyright &copy; {new Date().getFullYear()}</p>
             <p
               onClick={slideToTop}
               className=" text-gray-9jsjjsjj00   underline underline-offset-2 cursor-pointer "
