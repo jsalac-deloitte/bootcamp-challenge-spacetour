@@ -1,10 +1,10 @@
-# Bootcamp Challenge
+# Deloitte Bootcamp Challenge
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### To start with the Project
 
-Clone the Repository to your local machine, runt the command to your terminal :
+Clone the Repository to your local machine, run the command to your terminal :
 #### `Git Clone git@github.com:jsalac-deloitte/bootcamp-challenge-spacetour.git jsalac-bootcamp-challenge`
 
 After you cloned it, go to the project directtory
