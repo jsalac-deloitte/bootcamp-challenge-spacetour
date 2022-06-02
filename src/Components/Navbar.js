@@ -61,6 +61,8 @@ function VerticalNavbar({ navs }) {
             h-screen 
             pt-[38px]
             z-40
+            transition-all
+            duration-300
             `}
       >
         <div className="flex justify-end pr-[24px]">
